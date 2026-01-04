@@ -1,0 +1,12 @@
+{
+  "cohorts": {
+    "1k_10k": 2260,
+    "10k_100k": 2597,
+    "over_100k": 2599
+  },
+  "manual_overrides": {
+    "sentiment": 0.4,
+    "structure": 0.617,
+    "momentum": 2
+  }
+}

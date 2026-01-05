@@ -18,6 +18,29 @@ interface ConfigData {
   }
 }
 
+export interface MetricsData {
+  sentiment: {
+    value: number;
+    status: 'bullish' | 'neutral' | 'bearish';
+  };
+  structure: {
+    value: number;
+    status: 'bullish' | 'neutral' | 'bearish';
+  };
+  cost: {
+    currentPrice: number;
+    cohorts: {
+      '1k_10k': number;
+      '10k_100k': number;
+      'over_100k': number;
+    };
+  };
+  momentum: {
+    score: number;
+  };
+  lastUpdated: string;
+}
+
 const DEFAULT_CONFIG: ConfigData = {
   cohorts: {
     '1k_10k': 2260,

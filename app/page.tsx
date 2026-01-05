@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import MetricCard from '@/components/MetricCard';
+import EditableMetric from '@/components/EditableMetric';
 import StrategyScore from '@/components/StrategyScore';
 import Link from 'next/link';
 
@@ -110,13 +111,13 @@ export default function Home() {
                     />
 
                     {/* 2. Structure */}
-                    <MetricCard
+                    <EditableMetric
                         title="2. 结构 (Structure)"
-                        value={`${(data.structure.value * 100).toFixed(1)}%`}
-                        status={isStructureReady ? 'bullish' : 'neutral'}
+                        initialValue={data.structure.value}
+                        description="PSIP (盈利供应百分比)。点击右上角 edit 可快速修正。(< 50% 极佳)"
                         threshold="< 50%"
-                        description="PSIP (盈利供应百分比)。目前为静态数据（基于推文），需手动在 Admin 页面更新。"
                         source="Static (Tweet)"
+                        metricKey="structure"
                     />
 
                     {/* 3. Cost */}

@@ -23,6 +23,10 @@ export interface MetricsData {
     value: number;
     status: 'bullish' | 'neutral' | 'bearish';
   };
+  fearAndGreed: {
+    value: number;
+    status: string;
+  };
   structure: {
     value: number;
     status: 'bullish' | 'neutral' | 'bearish';
@@ -124,6 +128,7 @@ export const getMetrics = async (): Promise<MetricsData> => {
       value: config.manual_overrides.sentiment ?? 0.4,
       status: (config.manual_overrides.sentiment ?? 0.4) < 0 ? 'bullish' : 'neutral',
     },
+    fearAndGreed: fng,
     structure: {
       value: config.manual_overrides.structure ?? 0.617,
       status: (config.manual_overrides.structure ?? 0.617) < 0.5 ? 'bullish' : 'neutral',

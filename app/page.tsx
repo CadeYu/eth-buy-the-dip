@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 interface MetricsData {
     sentiment: { value: number; status: 'bullish' | 'neutral' | 'bearish' };
+    fearAndGreed: { value: number; status: string }; // New field
     structure: { value: number; status: 'bullish' | 'neutral' | 'bearish' };
     cost: { currentPrice: number; cohorts: { '1k_10k': number; '10k_100k': number; 'over_100k': number } };
     momentum: { score: number };
@@ -101,12 +102,14 @@ export default function Home() {
                 {/* Metrics Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* 1. Emotion */}
+                    {/* 1. Emotion */}
                     <MetricCard
                         title="1. 情绪 (Emotion)"
-                        value={data.sentiment.value}
-                        status={isSentimentReady ? 'bullish' : 'neutral'}
-                        threshold="< 0"
-                        description="代理指标 (Fear & Greed)。使用恐慌指数作为 LTH-NUPL 的高频替代参考。极度恐慌通常对应 NUPL 底部。"
+                        value={data.fearAndGreed.value}
+                        subValue={`状态: ${data.fearAndGreed.status}`}
+                        status={data.fearAndGreed.value < 20 ? 'bullish' : 'neutral'}
+                        threshold="Index < 20"
+                        description="当前使用 '恐慌贪婪指数' 作为实时情绪参考。Index < 20 (极度恐慌) 通常对应 LTH-NUPL 的底部区域。"
                         source="Proxy Est."
                     />
 
